@@ -14,13 +14,13 @@ app.use(bodyParser.json());
 // Připojení k MongoDB
 mongoose.connect("mongodb+srv://martin16:JebuTvojiMamu@cluster0.0fs4b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
     
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
-}).then(() => {
-    console.log("MongoDB connected");
-}).catch(err => {
-    console.log("MongoDB connection error:", err);
+const resultSchema = new mongoose.Schema({
+    user: String,
+    score: Number,
+    date: String,
 });
+
+const Result = mongoose.model("Result", resultSchema);
 
 // Endpoint pro ukládání výsledků
 app.post("/api/save-results", async (req, res) => {
